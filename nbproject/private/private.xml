@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Vista.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Centralita.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Aseo.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Habitacion.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Estancias.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Comando.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Usuario.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Cocina.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Reloj.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/Domotica-GabrielPayano/src/vista/Garaje.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
