@@ -20,10 +20,10 @@ public class Domotica {
             pero de cara a una mejor lectura hemos decidido realizarlo c/u por separado*/
         
         Garaje g1 = new Garaje();
-        System.out.println(g1);
+//        System.out.println(g1);
         //Garajes
         Garaje g2 = new Garaje(2, new Puerta(), 50);
-        System.out.println(g2);
+//        System.out.println(g2);
         //USUARIO
         Usuario user = new Usuario("GabrielPayano", "12345gp"); 
         //SALON
@@ -34,7 +34,7 @@ public class Domotica {
         Reloj relojAux= new Reloj();
         
         Centralita mainCentral = new Centralita("centralitaPrincipal",LocalDate.now(),relojAux,user,g2,salon1,dormitorio1);
-        
+        Vista.login(mainCentral);
 
     }
 
