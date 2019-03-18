@@ -16,14 +16,43 @@ public class Vista {
     //Identificar las distintas acciones que realiza el usuario
     private static Scanner teclado = new Scanner(System.in);
 
-    public static Usuario login() {
+    public static Usuario login(Centralita aux) {
 
+        //Método que recibre una centralita y que se encarga de realizar un login a dicha centralita, comparando el usuario y contraseña de la centralita en cuestion
+        //con los que introduce el usuario, en caso de ser coreecto realizará una llamada al método menu(), por el contrario preguntará el usuario hasta que los datos sean correctos
+        // o se acaben sus oportunidades en este caso 5
+        int contadorOportunidades = 0;//Se encarga de guardar el número de oportunidades que tiene el usuario para introducir bien los datos
         System.out.println("Introduce el usuario: ");
         String user = teclado.nextLine();
         System.out.println("Introduce la contraseña: ");
         String contra = teclado.nextLine();
-
         Usuario user1 = new Usuario(user, contra);
+        if (!(user.equals(aux.getUsuario().getUsuario()) && contra.equals(aux.getUsuario().getContraseña()))) {
+            System.out.println("El usuario o la contraseña no son corrector por favor introduzaca de nuevo:");
+
+            do {
+                System.out.println("Usuario: ");
+                user = teclado.nextLine();
+                System.out.println("Contraseña: ");
+                contra = teclado.nextLine();
+
+                if (!(user.equals(aux.getUsuario().getUsuario()) && contra.equals(aux.getUsuario().getContraseña()))) {
+                    System.out.println("El usuario o la contraseña no son corrector por favor introduzaca de nuevo:");
+                    contadorOportunidades++;
+                    System.out.println("Intentos restantes: " + (5 - contadorOportunidades));
+                } else {
+                    System.out.println("Login completado con exito");
+                    System.out.println("");
+                    Vista.menu();
+                }
+
+            } while (!(user.equals(aux.getUsuario().getUsuario()) && contra.equals(aux.getUsuario().getContraseña())) && contadorOportunidades < 5);
+
+        } else {
+            System.out.println("Login completado con exito");
+            Vista.menu();
+        }
+
         return user1;
 
     }
