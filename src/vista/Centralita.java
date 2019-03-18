@@ -20,11 +20,11 @@ public class Centralita {
     private Estancias garaje;
     private Estancias salon;
     private Estancias dormitorio;
-    private Usuario user;
+    
     
     //Constructor
 
-    public Centralita(String identificador, LocalDate fechaInstanciacion, Reloj reloj, Usuario usuario, Estancias garaje, Estancias salon, Estancias dormitorio, Usuario user) {
+    public Centralita(String identificador, LocalDate fechaInstanciacion, Reloj reloj, Usuario usuario, Estancias garaje, Estancias salon, Estancias dormitorio) {
         this.identificador = identificador;
         this.fechaInstanciacion = fechaInstanciacion;
         this.reloj = reloj;
@@ -32,7 +32,7 @@ public class Centralita {
         this.garaje = garaje;
         this.salon = salon;
         this.dormitorio = dormitorio;
-        this.user = user;
+        
     }
 
   
@@ -67,9 +67,7 @@ public class Centralita {
         return dormitorio;
     }
 
-    public Usuario getUser() {
-        return user;
-    }
+    
 
     //Setters
 
@@ -101,9 +99,7 @@ public class Centralita {
         this.dormitorio = dormitorio;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
-    }
+   
     
     
     
