@@ -35,6 +35,9 @@ public class Centralita {
         
     }
 
+    public Centralita() {
+    }
+
   
     
     //Getters
@@ -99,7 +102,20 @@ public class Centralita {
         this.dormitorio = dormitorio;
     }
 
-   
+   public void ejecutarOrden(Comando comando){
+       
+       switch(comando){
+
+           case APAGAR_SISTEMA:
+               
+               break;
+               
+           case CONSULTAR_HORA:
+               Reloj.mostarHoraActual();
+               break;
+       }
+       
+   }
     
     
     
