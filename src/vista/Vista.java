@@ -43,7 +43,7 @@ public class Vista {
                 } else {
                     System.out.println("Login completado con exito");
                     System.out.println("");
-                    Vista.menu();
+                    
                 }
 
             } while (!(user.equals(aux.getUsuario().getUsuario()) && contra.equals(aux.getUsuario().getContraseña())) && contadorOportunidades < 5);
