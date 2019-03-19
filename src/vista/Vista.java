@@ -50,7 +50,7 @@ public class Vista {
 
         } else {
             System.out.println("Login completado con exito");
-            Vista.menu();
+           
         }
 
         return user1;
@@ -58,7 +58,7 @@ public class Vista {
     }
 
     public static Comando menu() {
-
+        
         System.out.println("¡Bienvenido a la centralita de tu hogar!");
 
         System.out.println("------------Menú----------------------");
@@ -151,9 +151,11 @@ public class Vista {
                 return Comando.APAGAR_LUCES_GARAJE;
             default:
                 throw new AssertionError();
-
+   
         }
 
+        
+     
     }
 
 }
