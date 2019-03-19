@@ -30,11 +30,13 @@ public class Domotica {
         //DORMITORIO
         Dormitorio dormitorio1 = new Dormitorio();
         //RELOJ
+
         Reloj relojAux = new Reloj();
 
         Centralita mainCentral = new Centralita("centralitaPrincipal", LocalDate.now(), relojAux, user, g2, salon1, dormitorio1);
         Vista.login(mainCentral);
         Vista.menu();
+
 
     }
 

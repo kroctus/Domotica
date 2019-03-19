@@ -66,6 +66,9 @@ public class Garaje extends Estancias {
         }
     }
 
+
+    
+    
     // Ejemplo de acceso a Método heredado usando el puntero super, que apunt a la clase padre de la clase en la que estoy.
     @Override
     public String toString() {

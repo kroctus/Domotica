@@ -26,6 +26,7 @@ public class Puerta {
     
     
     
+    
     //Getters
 
     public boolean isEstado() {
