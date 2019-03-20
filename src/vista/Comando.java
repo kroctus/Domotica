@@ -35,8 +35,6 @@ public enum Comando {
     APAGAR_LUCES_DORMITORIO(18,"Apaga las luces del dormitorio"),
     APAGAR_LUCES_SALON(19,"Apaga las luces del salón"),
     APAGAR_LUCES_GARAJE(20,"Apaga las luces del garaje"),
-    
-    
     ;
 
     private int codigo;

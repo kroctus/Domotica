@@ -6,6 +6,8 @@
 package vista;
 
 import java.time.LocalDate;
+import static vista.Comando.APAGAR_SISTEMA;
+import static vista.Comando.CONSULTAR_HORA;
 
 /**
  *
@@ -32,14 +34,19 @@ public class Domotica {
         //RELOJ
 
         Reloj relojAux = new Reloj();
-
-        Centralita mainCentral = new Centralita("centralitaPrincipal", LocalDate.now(), relojAux, user, g2, salon1, dormitorio1);
+        //Creamos nuestra centralita con los objetos que creamos antes
+        Centralita mainCentral = new Centralita("centralitaPrincipal",
+                LocalDate.now(), relojAux, user, g2, salon1, dormitorio1);
+        //Ejecutamos el método login() para iniciar sesión en la centralita
         Vista.login(mainCentral);
-      
-       
-        mainCentral.ejecutarOrden(Vista.menu());
-        
 
+        //Ejecutamos el método ejecutarComando() dentro de un bucle que mostrará el menú
+        // y realizará los comandos que seleccione el usuario hasta que esté apague el sistema.
+        Comando aux = CONSULTAR_HORA;
+        while (aux != APAGAR_SISTEMA) {
+            aux = Vista.menu();
+            mainCentral.ejecutarOrden(aux);
+        }
 
     }
 
