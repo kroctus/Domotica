@@ -335,11 +335,11 @@ public class Centralita {
                 break;
 
             case REVISAR_CAMARA_DORMITORIO:
-                vigilancia();
+                vigilarDormitorio();
                 break;
 
             case REVISAR_CAMARA_SALON:
-                vigilancia();
+                vigilarSalon();
                 break;
 
             case MOSTRAR_ESTADO_SALON:
@@ -363,7 +363,7 @@ public class Centralita {
                 break;
 
             case APAGAR_LUCES:
-                System.out.println("Se han apagado las luces");
+                apagarLuces();
                 break;
 
         }
