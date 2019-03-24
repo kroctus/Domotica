@@ -119,6 +119,10 @@ public class Centralita {
             case CONSULTAR_HORA:
                 Reloj.mostarHoraActual();
                 break;
+                
+            case MODIFICAR_HORA:
+                Reloj.modificarHora();
+                break;
 
             case SUBIR_PUERTA_GARJE:
                 System.out.println("La puerta del garaje se ha subido");
