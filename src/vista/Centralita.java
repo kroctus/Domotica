@@ -6,6 +6,7 @@
 package vista;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 /**
  *
@@ -17,12 +18,12 @@ public class Centralita {
     private LocalDate fechaInstanciacion;
     private Reloj reloj;
     private Usuario usuario;
-    private Estancias garaje;
-    private Estancias salon;
-    private Estancias dormitorio;
+    private Garaje garaje;
+    private Salon salon;
+    private Dormitorio dormitorio;
 
     //Constructor
-    public Centralita(String identificador, LocalDate fechaInstanciacion, Reloj reloj, Usuario usuario, Estancias garaje, Estancias salon, Estancias dormitorio) {
+    public Centralita(String identificador, LocalDate fechaInstanciacion, Reloj reloj, Usuario usuario, Garaje garaje, Salon salon, Dormitorio dormitorio) {
         this.identificador = identificador;
         this.fechaInstanciacion = fechaInstanciacion;
         this.reloj = reloj;
@@ -30,7 +31,6 @@ public class Centralita {
         this.garaje = garaje;
         this.salon = salon;
         this.dormitorio = dormitorio;
-
     }
 
     public Centralita() {
@@ -96,18 +96,83 @@ public class Centralita {
         this.usuario = usuario;
     }
 
-    public void setGaraje(Estancias garaje) {
-        this.garaje = garaje;
+    public void encenderLuces() {
+        System.out.println("¿De qué estancia quiere encender las luces?");
+        System.out.println("1-Dormitorio");
+        System.out.println("2-Salon");
+        System.out.println("3-Garaje");
+
+        int opcion = 4;
+        Scanner teclado = new Scanner(System.in);
+        opcion=teclado.nextInt();
+
+        switch (opcion) {
+
+            case 1:
+                this.dormitorio.getLuces().encenderLuces();
+                break;
+            case 2:
+                this.salon.getLuces().encenderLuces();
+                break;
+            case 3:
+                this.garaje.getLuces().encenderLuces();
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+    }
+   
+    //Método que apaga todas las luces de de la centralita
+    public void apagadoGeneralCentralita(){
+        
+        this.dormitorio.getLuces().apagadoGeneral();
+        this.garaje.getLuces().apagadoGeneral();;
+        this.salon.getLuces().apagadoGeneral();
+        
     }
 
-    public void setSalon(Estancias salon) {
-        this.salon = salon;
+    //método que gestiona el apagado de las luces en la centralita diferenciando entre las opciones de apagado manual, general o ECO.
+    public void apagarLuces() {
+        System.out.println("¿Qué tipo de apagado desea?");
+        System.out.println("1-Apagado manual");
+        System.out.println("2-Apàgado general");
+        System.out.println("3-Apagado ECO");
+
+        int opcion = 4;
+        Scanner teclado = new Scanner(System.in);
+        opcion=teclado.nextInt();
+        
+        switch(opcion){
+            case 1:
+                System.out.println("¿De cuál estancia deseas apagar las luces?");
+                System.out.println("1-Dormitoio");
+                System.out.println("2-Salon");
+                System.out.println("3-garaje");
+                
+                opcion=teclado.nextInt();
+                
+                switch(opcion){
+                    case 1:
+                        this.dormitorio.getLuces().apagarLuces();
+                        break;
+                    case 2:
+                        this.dormitorio.getLuces().apagarLuces();
+                        break;
+                    case 3:
+                        this.dormitorio.getLuces().apagarLuces();
+                        break;
+                }
+                break;
+            case 2:
+                apagadoGeneralCentralita();
+                break;
+        }
+
     }
 
-    public void setDormitorio(Estancias dormitorio) {
-        this.dormitorio = dormitorio;
-    }
-
+    //Método que recibe y ejecuta las ordenes que selecciona el usuario en el menú
+    //Este método recibe un comando y en base a este hace llamadas a los diferentes métodos que realizan la acción que se ajusta al comando.
     public void ejecutarOrden(Comando comando) {
 
         switch (comando) {
@@ -119,30 +184,31 @@ public class Centralita {
             case CONSULTAR_HORA:
                 Reloj.mostarHoraActual();
                 break;
-                
+
             case MODIFICAR_HORA:
-                Reloj.modificarHora();
+                this.reloj.modificarHora();
                 break;
 
             case SUBIR_PUERTA_GARJE:
-                System.out.println("La puerta del garaje se ha subido");
+                this.garaje.subirPuertaGaraje();
                 break;
+            case CERRAR_PUERTA_GARAJE:
+                this.garaje.cerrarPuertaGaraje();
+
             case CIERRAR_PERSIANA_SALON:
-                System.out.println("LAs persianas del salon se han cerrado");
+                this.salon.getPersiana().subirPersiana();
                 break;
             case ABRIR_PERSIANA_DORMITORIO:
-                System.out.println("Las persianas del dormitorio de han abierto");
+                this.dormitorio.getPersiana().subirPersiana();
                 break;
             case CERRAR_PERSIANA_DORMITORIO:
-                System.out.println("Las persianas del dormitorio se han cerrado");
+                this.dormitorio.getPersiana().subirPersiana();
                 break;
 
             case ABRIR_PERSIANA_SALON:
-                System.out.println("Las persianas del salon se han abierto");
+                this.salon.getPersiana().subirPersiana();
                 break;
 
-            // case 8:
-            //  return Comando.CIERRAR_PERSIANA_SALON;
             case REVISAR_CAMARA_DORMITORIO:
                 System.out.println("Estas en la camara del dormitorio");
                 break;
@@ -172,23 +238,13 @@ public class Centralita {
                 break;
 
             case ENCENDER_LUCES:
-                System.out.println("Se han encendido las luces");
+                encenderLuces();
                 break;
 
             case APAGAR_LUCES:
                 System.out.println("Se han apagado las luces");
                 break;
 
-            case APAGAR_LUCES_DORMITORIO:
-                System.out.println("se han apagado las luces del dormitorio");
-                break;
-            case APAGAR_LUCES_SALON:
-                System.out.println("Se han apagado las luces del salon");
-                break;
-
-            case APAGAR_LUCES_GARAJE:
-                System.out.println("Se han apagado las luces del garaje");
-                break;
         }
 
     }
