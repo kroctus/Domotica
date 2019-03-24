@@ -84,6 +84,7 @@ public class Vista {
         System.out.println("14-Muestra el estado total de la vivienda");
         System.out.println("15-Enciender las luces");
         System.out.println("16-Apagar las luces");
+        System.out.println("17-Activar camaras");
     
 
         numero = teclado.nextInt();
@@ -125,6 +126,8 @@ public class Vista {
                 return Comando.ENCENDER_LUCES;
             case 16:  
                 return Comando.APAGAR_LUCES;
+            case 17:
+                return Comando.ACTIVAR_CAMARAS;
             
             default:
                 throw new AssertionError();

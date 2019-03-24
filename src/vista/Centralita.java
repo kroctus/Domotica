@@ -172,82 +172,77 @@ public class Centralita {
 
     }
 
-    //Actua dependiendo de la estancia que selecciona el usuario en el método vigilancia
-    //En caso de que la hora en que se active este método sea entre las 20:00 y las 8:00 (por la noche) el método encenderá las luces de la estancia seleccionada
-    // y las mantendrá así hasta que el usuario decida salir en cuyo caso las luces de apagaran de nuevo
-    public void vigilanciaInteligente(int opcionVigilancia) {
-        Scanner teclado = new Scanner(System.in);
-        String opcion = "";
+    //Acciona la camara del salon comprobando si la hora de la centralita se encuentra entre las 20:00 y las 8:00 
+    //En cuyo caso encenderás las luces antes de actiivar la camará cuando finalice la interacción (Esto se hará mediante la llamada del método
+    // preguntarSalida) se volverán a apagar las luces
+    // si esta de dia pero las ventanas de encuentran cerradas igual encendera la luz y las apagará una vez termine su ejecución
+    public void vigilarSalon() {
+        //Si es de noche:
 
-        switch (opcionVigilancia) {
+        if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
+                && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
+                || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
+                && this.salon.getLuces().isEstado() == false) {
 
-            //En caso de que seleccione el salón en el método vigilancia
-            case 1:
-                //Si es de noche:
+            this.salon.getLuces().setEstado(true);
+            System.out.println("Estas en la camara de vigilancia del salon");
 
-                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
-                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
-                        || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
-                        && this.salon.getLuces().isEstado() == false) {
-
-                    this.salon.getLuces().setEstado(true);
-                    System.out.println("Estas en la camara de vigilancia del salon");
-
-                } else {
-                    System.out.println("Estas en la camara del salon");
-                }
-                preguntarSalidaSalon();
-
-                // si es de día
-                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
-                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
-                        || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
-                        && this.salon.getPersiana().getEstado() == 0) {
-
-                    this.salon.getLuces().setEstado(true);//Enciende las luces
-                    System.out.println("Estas en la camara de vigilancia del salon");
-                } else {
-                    System.out.println("Estas en la camara de vigilancia del salon");
-                }
-
-                //Método preguntar
-                preguntarSalidaSalon();
-                break;
-
-            //En caso de que seleccione el dormitorio en el método vigilancia
-            case 2:
-
-                // si elige el dormitorio y es de noche:
-                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
-                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
-                        || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
-                        && this.dormitorio.getLuces().isEstado() == false) {
-
-                    this.dormitorio.getLuces().setEstado(true);
-                    System.out.println("Estas en la camara de vigilancia del dormitorio");
-
-                } else {
-                    System.out.println("Estas en la camara de vigilancia del dormitorio");
-                }
-
-                preguntarSalidaDormitorio();
-
-                //si es de dia
-                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
-                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
-                        || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
-                        && this.dormitorio.getPersiana().getEstado() == 0) {
-
-                    this.dormitorio.getLuces().setEstado(true);//Enciende las luces
-                    System.out.println("Estas en la camara de vigilancia del dormitorio");
-                } else {
-                    System.out.println("Estas en la camara de vigilancia del dormitorio");
-                }
-
-                preguntarSalidaDormitorio();
-
-                break;
+        } else {
+            System.out.println("Estas en la camara del salon");
         }
+        preguntarSalidaSalon();
+
+        // si es de día
+        if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
+                && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
+                || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
+                && this.salon.getPersiana().getEstado() == 0) {
+
+            this.salon.getLuces().setEstado(true);//Enciende las luces
+            System.out.println("Estas en la camara de vigilancia del salon");
+        } else {
+            System.out.println("Estas en la camara de vigilancia del salon");
+        }
+
+        //Método preguntar
+        preguntarSalidaSalon();
+
+    }
+    //Acciona la camara del dormitorio comprobando si la hora de la centralita se encuentra entre las 20:00 y las 8:00 
+    //En cuyo caso encenderás las luces antes de actiivar la camará cuando finalice la interacción (Esto se hará mediante la llamada del método
+    // preguntarSalida) se volverán a apagar las luces
+    // si esta de dia pero las ventanas de encuentran cerradas igual encendera la luz y las apagará una vez termine su ejecución
+
+    public void vigilarDormitorio() {
+
+        // si elige el dormitorio y es de noche:
+        if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
+                && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
+                || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
+                && this.dormitorio.getLuces().isEstado() == false) {
+
+            this.dormitorio.getLuces().setEstado(true);
+            System.out.println("Estas en la camara de vigilancia del dormitorio");
+
+        } else {
+            System.out.println("Estas en la camara de vigilancia del dormitorio");
+        }
+
+        preguntarSalidaDormitorio();
+
+        //si es de dia
+        if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
+                && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
+                || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
+                && this.dormitorio.getPersiana().getEstado() == 0) {
+
+            this.dormitorio.getLuces().setEstado(true);//Enciende las luces
+            System.out.println("Estas en la camara de vigilancia del dormitorio");
+        } else {
+            System.out.println("Estas en la camara de vigilancia del dormitorio");
+        }
+
+        preguntarSalidaDormitorio();
 
     }
 
@@ -265,7 +260,7 @@ public class Centralita {
             this.salon.getLuces().setEstado(false);
             Vista.menu();
         } else if (opcion.equalsIgnoreCase("n")) {
-            vigilanciaInteligente(1);
+            vigilarSalon();
         }
     }
 
@@ -278,7 +273,7 @@ public class Centralita {
         if (opcion.equals("s")) {
             Vista.menu();
         } else if (opcion.equalsIgnoreCase("n")) {
-            vigilanciaInteligente(2);
+            vigilarDormitorio();
         }
 
     }
@@ -294,10 +289,10 @@ public class Centralita {
 
         switch (opcion) {
             case 1:
-                vigilanciaInteligente(1);
+                vigilarSalon();
                 break;
             case 2:
-                vigilanciaInteligente(2);
+                vigilarDormitorio();
         }
     }
 
@@ -344,7 +339,7 @@ public class Centralita {
                 break;
 
             case REVISAR_CAMARA_SALON:
-               vigilancia();
+                vigilancia();
                 break;
 
             case MOSTRAR_ESTADO_SALON:
