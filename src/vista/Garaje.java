@@ -18,7 +18,7 @@ public class Garaje extends Estancias {
     private int capacidadVehiculos;
     private Puerta puertaAutomatica;
     private Luz luces;
-    private Camara camara;
+    
 
     //Los constructores son los únicos métodos que no se heredan.
     //Todo se hereda salvo eso  y lo que esta en private.
@@ -97,13 +97,7 @@ public class Garaje extends Estancias {
         this.luces = luces;
     }
 
-    public Camara getCamara() {
-        return camara;
-    }
-
-    public void setCamara(Camara camara) {
-        this.camara = camara;
-    }
+  
     
     
 
