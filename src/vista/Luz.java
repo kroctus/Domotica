@@ -59,8 +59,39 @@ public class Luz {
         }
     }
     
+     //Traducir estado luces
+    //Método que traduce el estado de las luces a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+    //Si es true esta encendida, false apagada
+    public void traEstadoLuces(){
+        
+        if (estado==false) {
+            System.out.println("Luces: encendidas");
+        }else{
+            System.out.println("Luces: apagadas.");
+        }
+    }
+    
      //Método que apaga las luces de la centralita sin preguntar por el estado anterior
     public void apagadoGeneral(){
         this.estado=false;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public double getConsumo() {
+        return consumo;
+    }
+
+    public void setConsumo(double consumo) {
+        this.consumo = consumo;
+    }
+    
+    
 }
