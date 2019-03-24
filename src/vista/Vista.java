@@ -86,6 +86,9 @@ public class Vista {
         System.out.println("17-Apaga las luces del dormitorio");
         System.out.println("18-Apaga las luces del salon");
         System.out.println("19-Apaga las luces del garaje");
+        System.out.println("20-Encender las luces del dormitorio");
+        System.out.println("21-Encender las luces del salon");
+        System.out.println("22-Enciende las luces del garaje");
 
         numero = teclado.nextInt();
 
@@ -132,6 +135,12 @@ public class Vista {
                 return Comando.APAGAR_LUCES_SALON;
             case 19:
                 return Comando.APAGAR_LUCES_GARAJE;
+            case 20:
+                return Comando.ENCENDER_LUCES_DORMITORIO;
+            case 21:
+                return Comando.ENCENDER_LUCES_SALON;
+            case 22:
+                return Comando.ENCENDER_LUCES_GARAJE;
             
             default:
                 throw new AssertionError();

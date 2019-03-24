@@ -28,13 +28,17 @@ public enum Comando {
     REVISAR_CAMARA_GARAJE(11, "Revisa la camara del garaje"),
     MOSTRAR_ESTADO_SALON(12, "Muestra el estado total del salón"),
     MOSTRAR_ESTADO_GARAJE(13, "Muestra el estado total del garaje"),
-    MOSTRAR_ESTADO_DORMITORIO (14 , "Muestra el estado total del dormitorio"),
+    MOSTRAR_ESTADO_DORMITORIO(14, "Muestra el estado total del dormitorio"),
     MOSTAR_ESTADO_GENERAL(15, "Muestra el estado total de la vivienda"),
-    ENCENDER_LUCES(16,"Enciende todas las luces"),
-    APAGAR_LUCES (17,"Apaga todas las luces"),
-    APAGAR_LUCES_DORMITORIO(18,"Apaga las luces del dormitorio"),
-    APAGAR_LUCES_SALON(19,"Apaga las luces del salón"),
-    APAGAR_LUCES_GARAJE(20,"Apaga las luces del garaje"),
+    ENCENDER_LUCES(16, "Enciende todas las luces"),
+    APAGAR_LUCES(17, "Apaga todas las luces"),
+    APAGAR_LUCES_DORMITORIO(18, "Apaga las luces del dormitorio"),
+    APAGAR_LUCES_SALON(19, "Apaga las luces del salón"),
+    APAGAR_LUCES_GARAJE(20, "Apaga las luces del garaje"),
+    ENCENDER_LUCES_DORMITORIO(21, "Enciende las luces del dormitorio"),
+    ENCENDER_LUCES_SALON(22, "Enciende las luces del salon"),
+    ENCENDER_LUCES_GARAJE(23, "Enciende las luces del garaje");
+
     ;
 
     private int codigo;
