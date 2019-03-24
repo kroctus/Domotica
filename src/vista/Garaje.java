@@ -97,7 +97,14 @@ public class Garaje extends Estancias {
         this.luces = luces;
     }
 
-  
+       public void mostrarEstado(){
+        
+        System.out.println("------------------Estado Garaje---------------------------------");
+        System.out.println("Garaje");
+        this.luces.traEstadoLuces();
+        
+        
+    }
     
     
 

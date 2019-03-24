@@ -21,6 +21,12 @@ public class Luz {
         this.estado = estado;
         this.consumo = consumo;
     }
+    
+    //constructor por defecto
+    public Luz(){
+        this.estado=false;
+        this.consumo=14.0;
+    }
 
     //Método para apagar y encender las luces en caso de que el estado seleeccioando sea en el que se encuentren las luces, 
     // se le preguntará al usuario si quiere pasar al estado contrario.

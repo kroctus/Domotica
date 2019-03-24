@@ -13,9 +13,29 @@ import java.util.Scanner;
  */
 public class Persiana {
 
-    private int estado = 0;
+    private int estado ;
     private int largo;// cm
     private int ancho;// cm
+
+    //Constructor por defecto
+    public Persiana() {
+        this.ancho=0;
+        this.estado=0;
+        this.largo=0;
+        
+    }
+    
+    //Constructor parametrizado
+
+    public Persiana(int estado, int largo, int ancho) {
+        this.estado = estado;
+        this.largo = largo;
+        this.ancho = ancho;
+    }
+    
+    
+    
+    
 
     //Método que simula la subida de una persiana, primero muestra al usuario el eatado actual de la ventana y luego solicita al usuario qué acción desea realizar
     //En caso de que la opción seleccionada sea en la que se encuentra la persiana, le indicará al usuario.

@@ -13,6 +13,20 @@ public class Camara {
 
     private boolean estado;
     private String ip; //La direcció IP de la camara.
+    
+    //constructores
+
+    public Camara(boolean estado, String ip) {
+        this.estado = estado;
+        this.ip = ip;
+    }
+
+    public Camara() {
+        this.estado=false;
+        this.ip="0500.5452.054";
+    }
+    
+    
 
     public boolean isEstado() {
         return estado;

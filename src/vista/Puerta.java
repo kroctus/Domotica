@@ -16,13 +16,16 @@ public class Puerta {
     
     //Constructor
 
-    public Puerta(boolean estado, int retardo) {
+    public Puerta() {
+        this.estado=false;
+        this.retardo=4;
+    }
+    //Constructor parametrizado
+        public Puerta(boolean estado, int retardo) {
         this.estado = estado;
         this.retardo = retardo;
     }
-
-    public Puerta() {
-    }
+    
     
     
     
@@ -53,6 +56,19 @@ public class Puerta {
     @Override
     public String toString() {
         return "Puerta{" + "estado=" + estado + ", retardo=" + retardo + '}';
+    }
+    
+    //   //Traducir estado Puerta
+    //Método que traduce el estado de las puertas a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+    //Si es true esta encendida, false apagada
+    
+    public void traEstadoPuerta(){
+        if (estado==false) {
+            System.out.println("Puerta: cerrada");
+        }else{
+            System.out.println("Estado: Abierta");
+        }
     }
     
     

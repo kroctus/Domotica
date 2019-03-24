@@ -20,6 +20,8 @@ public class Usuario {
     //Constructor 
 
     public Usuario() {
+        this.contraseña="1234";
+        this.usuario="Mainuser";
     }
     
     //Constructor parametrizado

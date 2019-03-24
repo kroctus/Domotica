@@ -5,6 +5,8 @@
  */
 package vista;
 
+import static vista.Orientacion.NORTE;
+
 /**
  *
  * @author gabriel
@@ -15,6 +17,14 @@ public class Dormitorio  extends Habitacion{
     private Persiana persiana;
     private Luz luces;
     private Camara camara;
+    
+    //Constructor por defecto
+
+    public Dormitorio() {
+        this.orientacion=NORTE;
+        this.luces=new Luz();
+        this.camara= new Camara();
+    }
     
 
     public Orientacion getOrientacion() {
@@ -49,7 +59,16 @@ public class Dormitorio  extends Habitacion{
         this.camara = camara;
     }
     
-    
+    public void mostrarEstado(){
+        
+        System.out.println("------------------Estado Dormitorio---------------------------------");
+        System.out.println("Dormitorio");
+        this.persiana.traEstadoPersiana();
+        this.luces.traEstadoLuces();
+        this.camara.traEstadoCamara();
+        
+    }
+   
  
     
    

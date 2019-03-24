@@ -34,9 +34,9 @@ public class Reloj {
 
     //Método que modifica la hora de la centralita con los valores que desee el usuario 
     // controlando que los valores sean correctos
-    public static void modificarHora() {
+    public void modificarHora() {
         
-        Centralita miCentralita = new Centralita();
+       
         Scanner teclado = new Scanner(System.in);
         System.out.println("Introduce las horas: ");
         int horas = teclado.nextInt();
@@ -57,10 +57,27 @@ public class Reloj {
             segundos = teclado.nextInt();
         }
         System.out.println("La hora ha sido modificada a las : " + horas + ":" + minutos + ":" + segundos + ":");
-        Reloj relojAux = new Reloj();
-        relojAux.HoraCentralita = LocalTime.of(horas, minutos, segundos);
-        miCentralita.setReloj(relojAux);
+        this.HoraCentralita= LocalTime.of(horas, minutos, segundos);
+       
         
     }
+
+    public LocalTime getHoraActual() {
+        return horaActual;
+    }
+
+    public void setHoraActual(LocalTime horaActual) {
+        this.horaActual = horaActual;
+    }
+
+    public LocalTime getHoraCentralita() {
+        return HoraCentralita;
+    }
+
+    public void setHoraCentralita(LocalTime HoraCentralita) {
+        this.HoraCentralita = HoraCentralita;
+    }
+    
+    
     
 }
