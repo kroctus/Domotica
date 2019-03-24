@@ -6,6 +6,7 @@
 package vista;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 /**
@@ -104,7 +105,7 @@ public class Centralita {
 
         int opcion = 4;
         Scanner teclado = new Scanner(System.in);
-        opcion=teclado.nextInt();
+        opcion = teclado.nextInt();
 
         switch (opcion) {
 
@@ -122,14 +123,14 @@ public class Centralita {
         }
 
     }
-   
+
     //Método que apaga todas las luces de de la centralita
-    public void apagadoGeneralCentralita(){
-        
+    public void apagadoGeneralCentralita() {
+
         this.dormitorio.getLuces().apagadoGeneral();
         this.garaje.getLuces().apagadoGeneral();;
         this.salon.getLuces().apagadoGeneral();
-        
+
     }
 
     //método que gestiona el apagado de las luces en la centralita diferenciando entre las opciones de apagado manual, general o ECO.
@@ -141,18 +142,18 @@ public class Centralita {
 
         int opcion = 4;
         Scanner teclado = new Scanner(System.in);
-        opcion=teclado.nextInt();
-        
-        switch(opcion){
+        opcion = teclado.nextInt();
+
+        switch (opcion) {
             case 1:
                 System.out.println("¿De cuál estancia deseas apagar las luces?");
                 System.out.println("1-Dormitoio");
                 System.out.println("2-Salon");
                 System.out.println("3-garaje");
-                
-                opcion=teclado.nextInt();
-                
-                switch(opcion){
+
+                opcion = teclado.nextInt();
+
+                switch (opcion) {
                     case 1:
                         this.dormitorio.getLuces().apagarLuces();
                         break;
@@ -169,6 +170,135 @@ public class Centralita {
                 break;
         }
 
+    }
+
+    //Actua dependiendo de la estancia que selecciona el usuario en el método vigilancia
+    //En caso de que la hora en que se active este método sea entre las 20:00 y las 8:00 (por la noche) el método encenderá las luces de la estancia seleccionada
+    // y las mantendrá así hasta que el usuario decida salir en cuyo caso las luces de apagaran de nuevo
+    public void vigilanciaInteligente(int opcionVigilancia) {
+        Scanner teclado = new Scanner(System.in);
+        String opcion = "";
+
+        switch (opcionVigilancia) {
+
+            //En caso de que seleccione el salón en el método vigilancia
+            case 1:
+                //Si es de noche:
+
+                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
+                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
+                        || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
+                        && this.salon.getLuces().isEstado() == false) {
+
+                    this.salon.getLuces().setEstado(true);
+                    System.out.println("Estas en la camara de vigilancia del salon");
+
+                } else {
+                    System.out.println("Estas en la camara del salon");
+                }
+                preguntarSalidaSalon();
+
+                // si es de día
+                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
+                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
+                        || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
+                        && this.salon.getPersiana().getEstado() == 0) {
+
+                    this.salon.getLuces().setEstado(true);//Enciende las luces
+                    System.out.println("Estas en la camara de vigilancia del salon");
+                } else {
+                    System.out.println("Estas en la camara de vigilancia del salon");
+                }
+
+                //Método preguntar
+                preguntarSalidaSalon();
+                break;
+
+            //En caso de que seleccione el dormitorio en el método vigilancia
+            case 2:
+
+                // si elige el dormitorio y es de noche:
+                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
+                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
+                        || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
+                        && this.dormitorio.getLuces().isEstado() == false) {
+
+                    this.dormitorio.getLuces().setEstado(true);
+                    System.out.println("Estas en la camara de vigilancia del dormitorio");
+
+                } else {
+                    System.out.println("Estas en la camara de vigilancia del dormitorio");
+                }
+
+                preguntarSalidaDormitorio();
+
+                //si es de dia
+                if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
+                        && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
+                        || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
+                        && this.dormitorio.getPersiana().getEstado() == 0) {
+
+                    this.dormitorio.getLuces().setEstado(true);//Enciende las luces
+                    System.out.println("Estas en la camara de vigilancia del dormitorio");
+                } else {
+                    System.out.println("Estas en la camara de vigilancia del dormitorio");
+                }
+
+                preguntarSalidaDormitorio();
+
+                break;
+        }
+
+    }
+
+    //Método que sirve para preguntar al usuario si quiere salir de la vigilancia inteligente
+    //En caso de que seleccione "s" (salir) se volverá a ejecutar el método menu()
+    //Si selecciona "n" (no salir) se volverá a ajecutar le método vigilancia
+    //Uno para el salon y otro para el dormitorio
+    public void preguntarSalidaSalon() {
+        Scanner teclado = new Scanner(System.in);
+        String opcion = "";
+        System.out.println("¿Deseas salir? s/n");
+        opcion = teclado.nextLine();
+
+        if (opcion.equalsIgnoreCase("s")) {
+            this.salon.getLuces().setEstado(false);
+            Vista.menu();
+        } else if (opcion.equalsIgnoreCase("n")) {
+            vigilanciaInteligente(1);
+        }
+    }
+
+    public void preguntarSalidaDormitorio() {
+        Scanner teclado = new Scanner(System.in);
+        String opcion = "";
+        System.out.println("¿Deseas salir? s/n");
+        opcion = teclado.nextLine();
+
+        if (opcion.equals("s")) {
+            Vista.menu();
+        } else if (opcion.equalsIgnoreCase("n")) {
+            vigilanciaInteligente(2);
+        }
+
+    }
+
+    //Método que se encarga de de acceder a las camaras de las estancias que las tengan bajo la selección del usuario
+    //Este método se apoya en el método vigilanciaInteligente para realizar acciones especificas en caso de ser necesario
+    public void vigilancia() {
+        System.out.println("Bienvenido al apartado de vigilancia, ¿qué estancia desea revisar?");
+        System.out.println("1-Salon");
+        System.out.println("2-Dormitorio");
+        Scanner teclado = new Scanner(System.in);
+        int opcion = teclado.nextInt();
+
+        switch (opcion) {
+            case 1:
+                vigilanciaInteligente(1);
+                break;
+            case 2:
+                vigilanciaInteligente(2);
+        }
     }
 
     //Método que recibe y ejecuta las ordenes que selecciona el usuario en el menú
@@ -205,21 +335,21 @@ public class Centralita {
                 this.dormitorio.getPersiana().subirPersiana();
                 break;
 
-            case ABRIR_PERSIANA_SALON:
-                this.salon.getPersiana().subirPersiana();
-                break;
-
-            case REVISAR_CAMARA_DORMITORIO:
-                System.out.println("Estas en la camara del dormitorio");
-                break;
-
-            case REVISAR_CAMARA_SALON:
-                System.out.println("Estas en la camara del salón");
-                break;
-
-            case REVISAR_CAMARA_GARAJE:
-                System.out.println("Estas en la camara del garaje");
-                break;
+//            case ABRIR_PERSIANA_SALON:
+//                this.salon.getPersiana().subirPersiana();
+//                break;
+//
+//            case REVISAR_CAMARA_DORMITORIO:
+//                System.out.println("Estas en la camara del dormitorio");
+//                break;
+//
+//            case REVISAR_CAMARA_SALON:
+//                System.out.println("Estas en la camara del salón");
+//                break;
+//
+//            case REVISAR_CAMARA_GARAJE:
+//                System.out.println("Estas en la camara del garaje");
+//                break;
 
             case MOSTRAR_ESTADO_SALON:
                 System.out.println("Se muestra el estado del salon");
