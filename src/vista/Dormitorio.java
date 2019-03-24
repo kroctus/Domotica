@@ -12,5 +12,26 @@ package vista;
 public class Dormitorio  extends Habitacion{
     
     private Orientacion orientacion;
+    private Persiana persiana;
     
+
+    public Orientacion getOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(Orientacion orientacion) {
+        this.orientacion = orientacion;
+    }
+
+    public Persiana getPersiana() {
+        return persiana;
+    }
+
+    public void setPersiana(Persiana persiana) {
+        this.persiana = persiana;
+    }
+ 
+    
+   
+
 }
