@@ -14,6 +14,7 @@ public class Dormitorio  extends Habitacion{
     private Orientacion orientacion;
     private Persiana persiana;
     private Luz luces;
+    private Camara camara;
     
 
     public Orientacion getOrientacion() {
@@ -39,6 +40,16 @@ public class Dormitorio  extends Habitacion{
     public void setLuces(Luz luces) {
         this.luces = luces;
     }
+
+    public Camara getCamara() {
+        return camara;
+    }
+
+    public void setCamara(Camara camara) {
+        this.camara = camara;
+    }
+    
+    
  
     
    

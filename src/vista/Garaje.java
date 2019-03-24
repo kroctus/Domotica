@@ -18,6 +18,7 @@ public class Garaje extends Estancias {
     private int capacidadVehiculos;
     private Puerta puertaAutomatica;
     private Luz luces;
+    private Camara camara;
 
     //Los constructores son los únicos métodos que no se heredan.
     //Todo se hereda salvo eso  y lo que esta en private.
@@ -28,6 +29,7 @@ public class Garaje extends Estancias {
         this.puertaAutomatica = puertaAutomatica;
     }
 
+    //Constructor por defecto
     public Garaje() {
         super();// Crea la instancia con m2 a 0
         this.capacidadVehiculos = 0;
@@ -37,8 +39,8 @@ public class Garaje extends Estancias {
     //Métodos que simula la apertura y cierre de la puerta del garaje cambiando su estado entre true si esta abierta o false si esta cerrada
     //En caso de que la puerta ya esta en el estado que el usuario seleccione se le preguntará si desea cambiar al otro estado
     public void subirPuertaGaraje() {
-        
-        Garaje garajeAux= new Garaje();
+
+        Garaje garajeAux = new Garaje();
         Scanner teclado = new Scanner(System.in);
         String opcion = "";
         if (!this.puertaAutomatica.isEstado() == true) {
@@ -70,6 +72,7 @@ public class Garaje extends Estancias {
         }
     }
 
+    //Getters and setters
     public int getCapacidadVehiculos() {
         return capacidadVehiculos;
     }
@@ -93,7 +96,14 @@ public class Garaje extends Estancias {
     public void setLuces(Luz luces) {
         this.luces = luces;
     }
-    
+
+    public Camara getCamara() {
+        return camara;
+    }
+
+    public void setCamara(Camara camara) {
+        this.camara = camara;
+    }
     
     
 
