@@ -13,6 +13,7 @@ public class Salon extends Habitacion {
     
     private boolean terraza;
     private Persiana persiana;
+    private Luz luces;
 
     public boolean isTerraza() {
         return terraza;
@@ -29,6 +30,16 @@ public class Salon extends Habitacion {
     public void setPersiana(Persiana persiana) {
         this.persiana = persiana;
     }
+
+    public Luz getLuces() {
+        return luces;
+    }
+
+    public void setLuces(Luz luces) {
+        this.luces = luces;
+    }
+    
+    
     
     
    

@@ -17,6 +17,7 @@ public class Garaje extends Estancias {
 
     private int capacidadVehiculos;
     private Puerta puertaAutomatica;
+    private Luz luces;
 
     //Los constructores son los únicos métodos que no se heredan.
     //Todo se hereda salvo eso  y lo que esta en private.
@@ -36,7 +37,8 @@ public class Garaje extends Estancias {
     //Métodos que simula la apertura y cierre de la puerta del garaje cambiando su estado entre true si esta abierta o false si esta cerrada
     //En caso de que la puerta ya esta en el estado que el usuario seleccione se le preguntará si desea cambiar al otro estado
     public void subirPuertaGaraje() {
-
+        
+        Garaje garajeAux= new Garaje();
         Scanner teclado = new Scanner(System.in);
         String opcion = "";
         if (!this.puertaAutomatica.isEstado() == true) {
@@ -46,6 +48,8 @@ public class Garaje extends Estancias {
             opcion = teclado.nextLine();
             if (opcion.equalsIgnoreCase("s")) {
                 cerrarPuertaGaraje();
+            } else {
+                this.puertaAutomatica.setEstado(true);
             }
 
         }
@@ -66,9 +70,33 @@ public class Garaje extends Estancias {
         }
     }
 
+    public int getCapacidadVehiculos() {
+        return capacidadVehiculos;
+    }
 
+    public void setCapacidadVehiculos(int capacidadVehiculos) {
+        this.capacidadVehiculos = capacidadVehiculos;
+    }
+
+    public Puerta getPuertaAutomatica() {
+        return puertaAutomatica;
+    }
+
+    public void setPuertaAutomatica(Puerta puertaAutomatica) {
+        this.puertaAutomatica = puertaAutomatica;
+    }
+
+    public Luz getLuces() {
+        return luces;
+    }
+
+    public void setLuces(Luz luces) {
+        this.luces = luces;
+    }
     
     
+    
+
     // Ejemplo de acceso a Método heredado usando el puntero super, que apunt a la clase padre de la clase en la que estoy.
     @Override
     public String toString() {
