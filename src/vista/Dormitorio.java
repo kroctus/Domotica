@@ -11,21 +11,20 @@ import static vista.Orientacion.NORTE;
  *
  * @author gabriel
  */
-public class Dormitorio  extends Habitacion{
-    
+public class Dormitorio extends Habitacion {
+
     private Orientacion orientacion;
     private Persiana persiana;
     private Luz luces;
     private Camara camara;
-    
-    //Constructor por defecto
 
+    //Constructor por defecto
     public Dormitorio() {
-        this.orientacion=NORTE;
-        this.luces=new Luz();
-        this.camara= new Camara();
+        this.orientacion = NORTE;
+        this.luces = new Luz();
+        this.camara = new Camara();
+        this.persiana= new Persiana();
     }
-    
 
     public Orientacion getOrientacion() {
         return orientacion;
@@ -58,19 +57,66 @@ public class Dormitorio  extends Habitacion{
     public void setCamara(Camara camara) {
         this.camara = camara;
     }
+   //Traducir estado persiana
+    //Método que traduce el estado de la persiana a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+
+    public void traEstadoPersiana() {
+ 
+        switch (this.persiana.getEstado()) {
+     
+            case 0:
+                System.out.println("Persiana:  bajadas");
+                break;
+            case 1:
+                System.out.println("Persiana: a media altura");
+                break;
+            case 2:
+                System.out.println("Persiana: subidas");
+                break;
+        }
+
+    }
+
+    //Traducir estado luces
+    //Método que traduce el estado de las luces a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+    //Si es true esta encendida, false apagada
     
-    public void mostrarEstado(){
+    public void traEstadoLuces() {
+
+        if (this.luces.isEstado() == false) {
+            System.out.println("Luces: encendidas");
+        } else {
+            System.out.println("Luces: apagadas.");
+        }
+    }
+    
+       //Traducir estado camara
+    //Método que traduce el estado de la camara a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+    //true=activada
+    //False = no activada
+     public void traEstadoCamara() {
         
-        System.out.println("------------------Estado Dormitorio---------------------------------");
-        System.out.println("Dormitorio");
-        this.persiana.traEstadoPersiana();
-        this.luces.traEstadoLuces();
-        this.camara.traEstadoCamara();
+        if (this.camara.isEstado()==true) {
+            System.out.println("Camara: activa");
+        }else{
+            System.out.println("Camara: no activa");
+        }
         
     }
-   
- 
-    
-   
+
+    public void mostrarEstado() {
+
+        System.out.println("------------------Estado Dormitorio---------------------------------");
+        System.out.println("Dormitorio");
+        this.traEstadoLuces();
+        this.traEstadoCamara();
+        this.traEstadoPersiana();
+     
+
+    }
+
 
 }

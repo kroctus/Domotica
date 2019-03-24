@@ -18,7 +18,6 @@ public class Garaje extends Estancias {
     private int capacidadVehiculos;
     private Puerta puertaAutomatica;
     private Luz luces;
-    
 
     //Los constructores son los únicos métodos que no se heredan.
     //Todo se hereda salvo eso  y lo que esta en private.
@@ -97,16 +96,40 @@ public class Garaje extends Estancias {
         this.luces = luces;
     }
 
-       public void mostrarEstado(){
-        
+    //Traducir estado persiana
+    //Método que traduce el estado de la persiana a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+    public void traEstadoPuerta() {
+
+        if (this.puertaAutomatica.isEstado() == true) {
+            System.out.println("Puerta: abierta");
+        } else {
+            System.out.println("Puerta: cerrada");
+        }
+    }
+
+    //Traducir estado luces
+    //Método que traduce el estado de las luces a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+    //Si es true esta encendida, false apagada
+    public void traEstadoLuces() {
+
+        if (this.luces.isEstado() == false) {
+            System.out.println("Luces: encendidas");
+        } else {
+            System.out.println("Luces: apagadas.");
+        }
+    }
+
+    public void mostrarEstado() {
+
         System.out.println("------------------Estado Garaje---------------------------------");
         System.out.println("Garaje");
-        this.luces.traEstadoLuces();
-        
-        
+        this.traEstadoLuces();
+        this.traEstadoPuerta();
+     
+
     }
-    
-    
 
     // Ejemplo de acceso a Método heredado usando el puntero super, que apunt a la clase padre de la clase en la que estoy.
     @Override

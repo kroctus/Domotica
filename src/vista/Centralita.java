@@ -303,6 +303,19 @@ public class Centralita {
                 vigilarDormitorio();
         }
     }
+    
+    //Método que muestra el estado general de la casa
+    //Para ello hace llamadas a los métodos que muestran el estado individual de las diferentes estancias
+    
+    public void mostrarEstadoGeneral(){
+        System.out.println("");
+        System.out.println("----------------ESTADO DE LA CENTRALITA------------------");
+        this.dormitorio.mostrarEstado();
+        this.garaje.mostrarEstado();
+        this.salon.mostrarEstado(); 
+    }
+ 
+    
 
     //Método que recibe y ejecuta las ordenes que selecciona el usuario en el menú
     //Este método recibe un comando y en base a este hace llamadas a los diferentes métodos que realizan la acción que se ajusta al comando.
@@ -351,19 +364,19 @@ public class Centralita {
                 break;
 
             case MOSTRAR_ESTADO_SALON:
-                System.out.println("Se muestra el estado del salon");
+                this.salon.mostrarEstado();
                 break;
 
             case MOSTRAR_ESTADO_GARAJE:
-                System.out.println("Se muestra el estado del garaje");
+                this.garaje.mostrarEstado();
                 break;
 
             case MOSTRAR_ESTADO_DORMITORIO:
-                System.out.println("Se muestra el estado del dormitorio");
+                this.dormitorio.mostrarEstado();
                 break;
 
             case MOSTAR_ESTADO_GENERAL:
-                System.out.println("Se muestra el estado general");
+               mostrarEstadoGeneral();
                 break;
 
             case ENCENDER_LUCES:

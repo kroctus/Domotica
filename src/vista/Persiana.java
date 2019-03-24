@@ -84,24 +84,7 @@ public class Persiana {
 
     }
     
-    //Traducir estado persiana
-    //Método que traduce el estado de la persiana a uno más natural para el usuario
-    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
-    public void traEstadoPersiana(){
-        
-        switch(estado){
-            case 0:
-                System.out.println("Persiana:  bajadas");
-                break;
-            case 1:
-                System.out.println("Persiana: a media altura");
-                break;
-            case 2:
-                System.out.println("Persiana: subidas");
-                break;
-        }
-    }
-
+ 
     public int getEstado() {
         return estado;
     }
