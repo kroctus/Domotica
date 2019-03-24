@@ -67,7 +67,7 @@ public class Vista {
         System.out.println("¿Qué quieres hacer? :D  : ");
         System.out.println("");
         System.out.println("0 -Apagar Sistema");
-        System.out.println("1-Consultar hora");
+        System.out.println("1-Consultar hora Actual");
         System.out.println("2-modificar hora centralita");
         System.out.println("3-subir la puerta del garaje");
         System.out.println("4-Cierra puertas garaje");
@@ -93,64 +93,46 @@ public class Vista {
 
             case 0:
                 return Comando.APAGAR_SISTEMA;
-
             case 1:
                 return Comando.CONSULTAR_HORA;
-
             case 2:
+                return Comando.MODIFICAR_HORA;
+                
+            case 3: 
                 return Comando.SUBIR_PUERTA_GARJE;
-
-            case 3:
-                return Comando.CIERRAR_PERSIANA_SALON;
-
             case 4:
-                return Comando.ABRIR_PERSIANA_DORMITORIO;
-
+                return Comando.CERRAR_PUERTA_GARAJE;
             case 5:
+                return Comando.ABRIR_PERSIANA_DORMITORIO;
+            case 6: 
                 return Comando.CERRAR_PERSIANA_DORMITORIO;
-
-            case 6:
-                return Comando.ABRIR_PERSIANA_SALON;
-
             case 7:
+                return Comando.ABRIR_PERSIANA_SALON;
+            case 8: 
                 return Comando.CIERRAR_PERSIANA_SALON;
-
-            case 8:
+            case 9: 
                 return Comando.REVISAR_CAMARA_DORMITORIO;
-
-            case 9:
-                return Comando.REVISAR_CAMARA_SALON;
-
             case 10:
+                return Comando.REVISAR_CAMARA_SALON;
+            case 11: 
                 return Comando.REVISAR_CAMARA_GARAJE;
-
-            case 11:
-                return Comando.MOSTRAR_ESTADO_SALON;
-
             case 12:
-                return Comando.MOSTRAR_ESTADO_GARAJE;
-
+                return Comando.MOSTRAR_ESTADO_SALON;
             case 13:
-                return Comando.MOSTRAR_ESTADO_DORMITORIO;
-
+                return Comando.MOSTRAR_ESTADO_GARAJE;
             case 14:
-                return Comando.MOSTAR_ESTADO_GENERAL;
-
+                return Comando.MOSTRAR_ESTADO_DORMITORIO;
             case 15:
-                return Comando.ENCENDER_LUCES;
-
+                return Comando.MOSTAR_ESTADO_GENERAL;
             case 16:
-                return Comando.APAGAR_LUCES;
-
-            case 17:
+                return Comando.ENCENDER_LUCES;
+            case 17: 
                 return Comando.APAGAR_LUCES_DORMITORIO;
-
             case 18:
                 return Comando.APAGAR_LUCES_SALON;
-
             case 19:
                 return Comando.APAGAR_LUCES_GARAJE;
-
+            
             default:
                 throw new AssertionError();
 
