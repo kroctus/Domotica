@@ -335,21 +335,17 @@ public class Centralita {
                 this.dormitorio.getPersiana().subirPersiana();
                 break;
 
-//            case ABRIR_PERSIANA_SALON:
-//                this.salon.getPersiana().subirPersiana();
-//                break;
-//
-//            case REVISAR_CAMARA_DORMITORIO:
-//                System.out.println("Estas en la camara del dormitorio");
-//                break;
-//
-//            case REVISAR_CAMARA_SALON:
-//                System.out.println("Estas en la camara del salón");
-//                break;
-//
-//            case REVISAR_CAMARA_GARAJE:
-//                System.out.println("Estas en la camara del garaje");
-//                break;
+            case ABRIR_PERSIANA_SALON:
+                this.salon.getPersiana().subirPersiana();
+                break;
+
+            case REVISAR_CAMARA_DORMITORIO:
+                vigilancia();
+                break;
+
+            case REVISAR_CAMARA_SALON:
+               vigilancia();
+                break;
 
             case MOSTRAR_ESTADO_SALON:
                 System.out.println("Se muestra el estado del salon");

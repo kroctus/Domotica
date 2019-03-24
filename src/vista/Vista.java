@@ -75,20 +75,16 @@ public class Vista {
         System.out.println("6-cierra las persinas del dormitorio");
         System.out.println("7-abre la persianas del salón");
         System.out.println("8-cierra las persinas del salón");
+        System.out.println("9-Activar la vigilancia");
         System.out.println("9-Revisa la camara del dormitorio");
         System.out.println("10-Revisa la camara del salon");
-        System.out.println("11-Revisa la camara del garaje");
-        System.out.println("12-Muestra el estado total del salon");
-        System.out.println("13-Muestra el estado total del garaje");
-        System.out.println("14-Muestra el estado total del dormitorio");
-        System.out.println("15-Muestra el estado total de la vivienda");
-        System.out.println("16-Enciende todas las luces");
-        System.out.println("17-Apaga las luces del dormitorio");
-        System.out.println("18-Apaga las luces del salon");
-        System.out.println("19-Apaga las luces del garaje");
-        System.out.println("20-Encender las luces del dormitorio");
-        System.out.println("21-Encender las luces del salon");
-        System.out.println("22-Enciende las luces del garaje");
+        System.out.println("11-Muestra el estado total del salon");
+        System.out.println("12-Muestra el estado total del garaje");
+        System.out.println("13-Muestra el estado total del dormitorio");
+        System.out.println("14-Muestra el estado total de la vivienda");
+        System.out.println("15-Enciender las luces");
+        System.out.println("16-Apagar las luces");
+    
 
         numero = teclado.nextInt();
 
@@ -100,7 +96,6 @@ public class Vista {
                 return Comando.CONSULTAR_HORA;
             case 2:
                 return Comando.MODIFICAR_HORA;
-                
             case 3: 
                 return Comando.SUBIR_PUERTA_GARJE;
             case 4:
@@ -117,30 +112,19 @@ public class Vista {
                 return Comando.REVISAR_CAMARA_DORMITORIO;
             case 10:
                 return Comando.REVISAR_CAMARA_SALON;
-            case 11: 
-                return Comando.REVISAR_CAMARA_GARAJE;
-            case 12:
+        
+            case 11:
                 return Comando.MOSTRAR_ESTADO_SALON;
-            case 13:
+            case 12:
                 return Comando.MOSTRAR_ESTADO_GARAJE;
-            case 14:
+            case 13:
                 return Comando.MOSTRAR_ESTADO_DORMITORIO;
-            case 15:
+            case 14:
                 return Comando.MOSTAR_ESTADO_GENERAL;
-            case 16:
+            case 15:
                 return Comando.ENCENDER_LUCES;
-            case 17: 
-                return Comando.APAGAR_LUCES_DORMITORIO;
-            case 18:
-                return Comando.APAGAR_LUCES_SALON;
-            case 19:
-                return Comando.APAGAR_LUCES_GARAJE;
-            case 20:
-                return Comando.ENCENDER_LUCES_DORMITORIO;
-            case 21:
-                return Comando.ENCENDER_LUCES_SALON;
-            case 22:
-                return Comando.ENCENDER_LUCES_GARAJE;
+            case 16:  
+                return Comando.APAGAR_LUCES;
             
             default:
                 throw new AssertionError();
