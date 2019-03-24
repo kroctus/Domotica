@@ -10,7 +10,7 @@ package vista;
  * @author gabriel
  */
 public class Camara {
-    
+
     private boolean estado;
     private String ip; //La direcció IP de la camara.
 
@@ -29,7 +29,21 @@ public class Camara {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
+    //Traducir estado camara
+    //Método que traduce el estado de la camara a uno más natural para el usuario
+    //Para ello toma el valor del atributo estado y lanza un mensaje en base a este.
+    //true=activada
+    //False = no activada
     
-    
-    
+    public void traEstadoCamara() {
+        
+        if (estado==true) {
+            System.out.println("Camara: activa");
+        }else{
+            System.out.println("Camara: no activa");
+        }
+        
+    }
+
 }
