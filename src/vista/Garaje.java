@@ -33,6 +33,8 @@ public class Garaje extends Estancias {
         super();// Crea la instancia con m2 a 0
         this.capacidadVehiculos = 0;
         this.puertaAutomatica = new Puerta();
+        this.luces=new Luz();
+        
     }
 
     //Métodos que simula la apertura y cierre de la puerta del garaje cambiando su estado entre true si esta abierta o false si esta cerrada
@@ -137,4 +139,11 @@ public class Garaje extends Estancias {
         return super.toString() + "\n Garaje{" + "capacidadVehiculos=" + capacidadVehiculos + ",\n puertaAutomatica=" + puertaAutomatica + '}';
     }
 
+    public static void main(String[] args) {
+        
+        Garaje aux = new Garaje();
+        
+        aux.mostrarEstado();
+        
+    }
 }
