@@ -179,6 +179,7 @@ public class Centralita {
     public void vigilarSalon() {
         //Si es de noche:
 
+        this.salon.getCamara().setEstado(true);//Activamos la camara
         if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
                 && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
                 || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
@@ -215,6 +216,7 @@ public class Centralita {
 
     public void vigilarDormitorio() {
 
+        this.dormitorio.getCamara().setEstado(true);//Activamos la camara
         // si elige el dormitorio y es de noche:
         if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
                 && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
@@ -257,7 +259,9 @@ public class Centralita {
         opcion = teclado.nextLine();
 
         if (opcion.equalsIgnoreCase("s")) {
-            this.salon.getLuces().setEstado(false);
+            this.salon.getLuces().setEstado(false);//Apagamos las luces al salir
+            this.salon.getCamara().setEstado(false);//salimos  de la camara
+           
             Vista.menu();
         } else if (opcion.equalsIgnoreCase("n")) {
             vigilarSalon();
@@ -271,6 +275,8 @@ public class Centralita {
         opcion = teclado.nextLine();
 
         if (opcion.equals("s")) {
+            this.dormitorio.getLuces().setEstado(false);//Apagamos las luces al salir
+            this.dormitorio.getCamara().setEstado(false);
             Vista.menu();
         } else if (opcion.equalsIgnoreCase("n")) {
             vigilarDormitorio();
@@ -289,9 +295,11 @@ public class Centralita {
 
         switch (opcion) {
             case 1:
+                this.dormitorio.getCamara().setEstado(true);
                 vigilarSalon();
                 break;
             case 2:
+                this.dormitorio.getCamara().setEstado(true);
                 vigilarDormitorio();
         }
     }
