@@ -22,7 +22,8 @@ public class Luz {
         this.consumo = consumo;
     }
 
-    //Método para apagar y encender las luces
+    //Método para apagar y encender las luces en caso de que el estado seleeccioando sea en el que se encuentren las luces, 
+    // se le preguntará al usuario si quiere pasar al estado contrario.
     public void apagarLuces() {
         Scanner teclado = new Scanner(System.in);
         String opcion = "";
@@ -56,5 +57,10 @@ public class Luz {
         } else {
             estado = true;
         }
+    }
+    
+     //Método que apaga las luces de la centralita sin preguntar por el estado anterior
+    public void apagadoGeneral(){
+        this.estado=false;
     }
 }
