@@ -37,10 +37,8 @@ public enum Comando {
     APAGAR_LUCES_GARAJE(20, "Apaga las luces del garaje"),
     ENCENDER_LUCES_DORMITORIO(21, "Enciende las luces del dormitorio"),
     ENCENDER_LUCES_SALON(22, "Enciende las luces del salon"),
-    ENCENDER_LUCES_GARAJE(23, "Enciende las luces del garaje"),
-    VIGILANCIA(24, "Activa las camaras de vigilancia");
-
-    ;
+    ENCENDER_LUCES_GARAJE(23, "Enciende las luces del garaje");
+    
 
     private int codigo;
     private String descripcion;
