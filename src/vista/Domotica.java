@@ -38,15 +38,24 @@ public class Domotica {
         Centralita mainCentral = new Centralita("centralitaPrincipal",
                 LocalDate.now(), relojAux, user, g2, salon1, dormitorio1);
         //Ejecutamos el método login() para iniciar sesión en la centralita
-        Vista.login(mainCentral);
+//        Vista.login(mainCentral);
 
         //Ejecutamos el método ejecutarComando() dentro de un bucle que mostrará el menú
         // y realizará los comandos que seleccione el usuario hasta que esté apague el sistema.
         Comando aux = CONSULTAR_HORA;
-        while (aux != APAGAR_SISTEMA) {
+        
+        Usuario user2= new Usuario();
+        
+        if (!Vista.login(mainCentral).equals(user2)) {
+            aux=APAGAR_SISTEMA;
+             while (aux != APAGAR_SISTEMA) {
             aux = Vista.menu();
             mainCentral.ejecutarOrden(aux);
         }
+        }
+        
+        
+       
 
     }
 

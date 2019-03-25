@@ -27,6 +27,7 @@ public class Vista {
         System.out.println("Introduce la contraseña: ");
         String contra = teclado.nextLine();
         Usuario user1 = new Usuario(user, contra);
+        Usuario user2= new Usuario ();
         if (!(user.equals(aux.getUsuario().getUsuario()) && contra.equals(aux.getUsuario().getContraseña()))) {
             System.out.println("El usuario o la contraseña no son corrector por favor introduzaca de nuevo:");
 
@@ -40,6 +41,11 @@ public class Vista {
                     System.out.println("El usuario o la contraseña no son corrector por favor introduzaca de nuevo:");
                     contadorOportunidades++;
                     System.out.println("Intentos restantes: " + (5 - contadorOportunidades));
+                    
+                    if(contadorOportunidades==5){
+                        System.out.println("Se bloquerá la centralita");
+                        return user2;
+                    }
                 } else {
                     System.out.println("Login completado con exito");
                     System.out.println("");
