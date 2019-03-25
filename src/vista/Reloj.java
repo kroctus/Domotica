@@ -19,6 +19,19 @@ public class Reloj {
     private LocalTime horaActual;
     private LocalTime HoraCentralita;
 
+    public Reloj(LocalTime horaActual, LocalTime HoraCentralita) {
+        this.horaActual = horaActual;
+        this.HoraCentralita = HoraCentralita;
+    }
+
+    public Reloj() {
+        
+        this.horaActual= LocalTime.now();
+        this.HoraCentralita=LocalTime.now();
+    }
+    
+    
+
     //Métodos
     //Método que muestra la hora actual a través de un LocalTime.now
     public static void mostarHoraActual() {
