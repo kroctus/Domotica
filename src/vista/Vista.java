@@ -42,10 +42,6 @@ public class Vista {
                     contadorOportunidades++;
                     System.out.println("Intentos restantes: " + (5 - contadorOportunidades));
                     
-                    if(contadorOportunidades==5){
-                        System.out.println("Se bloquerá la centralita");
-                        return user2;
-                    }
                 } else {
                     System.out.println("Login completado con exito");
                     System.out.println("");
