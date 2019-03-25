@@ -131,11 +131,43 @@ public class Centralita {
 
     }
 
+    //Apagado ECO
+    //Método que detecta si la hora se encuentra comprendida entre las 8:00 y las 18:00 de ser el caso mirará si las ventanas de las habitaciones están 
+    // totalmente abiertas y las luces de dichas habitaciones están encendidas y procederá a apgarlas.
+    //En caso de que no se cumplan estas condiciones se lo indicará al usuario.
+    public void apagadoEco() {
+
+        System.out.println("Bienvenido al apagado Eco");
+        if (this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))) {
+            System.out.println("El apagado Eco esta activo");
+            //si las luces están encendidas y las persianas están totalmente abiertas apaga las luces
+            if (this.dormitorio.getPersiana().getEstado() == 2 && this.dormitorio.getLuces().isEstado() == true) {
+                this.dormitorio.getLuces().setEstado(false);//Apaga las luces
+                System.out.println("Se han apagado las luces del dormitorio");
+            } else if ((this.dormitorio.getPersiana().getEstado() != 2 || this.dormitorio.getLuces().isEstado() != true)) {
+                System.out.println("No hace falta ejecutar el apagado ECO en el dormitorio");
+            }
+            {
+
+            }
+
+            if (this.salon.getPersiana().getEstado() == 2 && this.salon.getLuces().isEstado() == true) {
+                this.salon.getLuces().setEstado(false);//Apaga las luces
+                System.out.println("Se han apagado las luces del salon");
+            } else if ((this.dormitorio.getPersiana().getEstado() != 2 || this.dormitorio.getLuces().isEstado() != true)) {
+                System.out.println("No hace falta ejecutar el apagado ECO en el salon");
+            }
+
+        } else if (!this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) || !this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))) {
+            System.out.println("El Apagado eco no funciona en estas horas");
+        }
+    }
+
     //método que gestiona el apagado de las luces en la centralita diferenciando entre las opciones de apagado manual, general o ECO.
     public void apagarLuces() {
         System.out.println("¿Qué tipo de apagado desea?");
         System.out.println("1-Apagado manual");
-        System.out.println("2-Apàgado general");
+        System.out.println("2-Apagado general");
         System.out.println("3-Apagado ECO");
 
         int opcion = 4;
@@ -166,6 +198,10 @@ public class Centralita {
             case 2:
                 apagadoGeneralCentralita();
                 break;
+
+            case 3:
+                apagadoEco();
+                break;
         }
 
     }
@@ -184,13 +220,12 @@ public class Centralita {
 
             this.salon.getLuces().setEstado(true);
             System.out.println("Estas en la camara de vigilancia del salon");
-                preguntarSalidaSalon();
+            preguntarSalidaSalon();
 
         } else {
             System.out.println("Estas en la camara del salon");
-                preguntarSalidaSalon();
+            preguntarSalidaSalon();
         }
-    
 
         // si es de día
         if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
@@ -199,15 +234,13 @@ public class Centralita {
 
             this.salon.getLuces().setEstado(true);//Enciende las luces
             System.out.println("Estas en la camara de vigilancia del salon");
-             preguntarSalidaDormitorio();
+            preguntarSalidaDormitorio();
         } else if (!this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
                 && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
                 && this.salon.getPersiana().getEstado() == 0) {
             System.out.println("Estas en la camara de vigilancia del salon");
-             preguntarSalidaDormitorio();
+            preguntarSalidaDormitorio();
         }
-
-    
 
     }
     //Acciona la camara del dormitorio comprobando si la hora de la centralita se encuentra entre las 20:00 y las 8:00 
@@ -225,14 +258,12 @@ public class Centralita {
 
             this.dormitorio.getLuces().setEstado(true);
             System.out.println("Estas en la camara de vigilancia del dormitorio");
-             preguntarSalidaDormitorio();
+            preguntarSalidaDormitorio();
 
         } else {
             System.out.println("Estas en la camara de vigilancia del dormitorio");
-             preguntarSalidaDormitorio();
+            preguntarSalidaDormitorio();
         }
-
-       
 
         //si es de dia
         if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
@@ -240,16 +271,14 @@ public class Centralita {
                 && this.dormitorio.getPersiana().getEstado() == 0) {
 
             this.dormitorio.getLuces().setEstado(true);//Enciende las luces
-             preguntarSalidaDormitorio();
+            preguntarSalidaDormitorio();
             System.out.println("Estas en la camara de vigilancia del dormitorio");
-        } else if(!this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
+        } else if (!this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
                 && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
                 && this.dormitorio.getPersiana().getEstado() == 0) {
             System.out.println("Estas en la camara de vigilancia del dormitorio");
-             preguntarSalidaDormitorio();
+            preguntarSalidaDormitorio();
         }
-
-       
 
     }
 
@@ -286,7 +315,7 @@ public class Centralita {
         if (opcion.equals("s")) {
             this.dormitorio.getLuces().setEstado(false);//Apagamos las luces al salir
             this.dormitorio.getCamara().setEstado(false);
-           Comando aux = CONSULTAR_HORA;
+            Comando aux = CONSULTAR_HORA;
             while (aux != APAGAR_SISTEMA) {
                 aux = Vista.menu();
                 ejecutarOrden(aux);
@@ -404,7 +433,5 @@ public class Centralita {
         }
 
     }
-
-  
 
 }
