@@ -8,6 +8,8 @@ package vista;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
+import static vista.Comando.APAGAR_SISTEMA;
+import static vista.Comando.CONSULTAR_HORA;
 
 /**
  *
@@ -101,7 +103,6 @@ public class Centralita {
         System.out.println("¿De qué estancia quiere encender las luces?");
         System.out.println("1-Dormitorio");
         System.out.println("2-Salon");
-      
 
         int opcion = 4;
         Scanner teclado = new Scanner(System.in);
@@ -115,7 +116,7 @@ public class Centralita {
             case 2:
                 this.salon.getLuces().encenderLuces();
                 break;
-          
+
             default:
                 throw new AssertionError();
         }
@@ -179,31 +180,34 @@ public class Centralita {
         this.salon.getCamara().setEstado(true);//Activamos la camara
         if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
                 && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
-                || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
                 && this.salon.getLuces().isEstado() == false) {
 
             this.salon.getLuces().setEstado(true);
             System.out.println("Estas en la camara de vigilancia del salon");
+                preguntarSalidaSalon();
 
         } else {
             System.out.println("Estas en la camara del salon");
+                preguntarSalidaSalon();
         }
-        preguntarSalidaSalon();
+    
 
         // si es de día
         if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
                 && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
-                || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
                 && this.salon.getPersiana().getEstado() == 0) {
 
             this.salon.getLuces().setEstado(true);//Enciende las luces
             System.out.println("Estas en la camara de vigilancia del salon");
-        } else {
+             preguntarSalidaDormitorio();
+        } else if (!this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
+                && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
+                && this.salon.getPersiana().getEstado() == 0) {
             System.out.println("Estas en la camara de vigilancia del salon");
+             preguntarSalidaDormitorio();
         }
 
-        //Método preguntar
-        preguntarSalidaSalon();
+    
 
     }
     //Acciona la camara del dormitorio comprobando si la hora de la centralita se encuentra entre las 20:00 y las 8:00 
@@ -213,35 +217,39 @@ public class Centralita {
 
     public void vigilarDormitorio() {
 
-        this.dormitorio.getCamara().setEstado(true);//Activamos la camara
+//        this.dormitorio.getCamara().setEstado(true);//Activamos la camara
         // si elige el dormitorio y es de noche:
-        if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(20, 0))
-                && this.reloj.getHoraCentralita().isBefore(LocalTime.of(8, 0))
-                || this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0))
+        if ((this.reloj.getHoraActual().isAfter(LocalTime.of(20, 0)))
+                && (this.reloj.getHoraActual().isBefore(LocalTime.of(8, 0)))
                 && this.dormitorio.getLuces().isEstado() == false) {
 
             this.dormitorio.getLuces().setEstado(true);
             System.out.println("Estas en la camara de vigilancia del dormitorio");
+             preguntarSalidaDormitorio();
 
         } else {
             System.out.println("Estas en la camara de vigilancia del dormitorio");
+             preguntarSalidaDormitorio();
         }
 
-        preguntarSalidaDormitorio();
+       
 
         //si es de dia
         if (this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
                 && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
-                || this.reloj.getHoraActual().isAfter(LocalTime.of(8, 0)) && this.reloj.getHoraActual().isBefore(LocalTime.of(18, 0))
                 && this.dormitorio.getPersiana().getEstado() == 0) {
 
             this.dormitorio.getLuces().setEstado(true);//Enciende las luces
+             preguntarSalidaDormitorio();
             System.out.println("Estas en la camara de vigilancia del dormitorio");
-        } else {
+        } else if(!this.reloj.getHoraCentralita().isAfter(LocalTime.of(8, 0))
+                && this.reloj.getHoraCentralita().isBefore(LocalTime.of(18, 0))
+                && this.dormitorio.getPersiana().getEstado() == 0) {
             System.out.println("Estas en la camara de vigilancia del dormitorio");
+             preguntarSalidaDormitorio();
         }
 
-        preguntarSalidaDormitorio();
+       
 
     }
 
@@ -258,8 +266,12 @@ public class Centralita {
         if (opcion.equalsIgnoreCase("s")) {
             this.salon.getLuces().setEstado(false);//Apagamos las luces al salir
             this.salon.getCamara().setEstado(false);//salimos  de la camara
-           
-            Vista.menu();
+
+            Comando aux = CONSULTAR_HORA;
+            while (aux != APAGAR_SISTEMA) {
+                aux = Vista.menu();
+                ejecutarOrden(aux);
+            }
         } else if (opcion.equalsIgnoreCase("n")) {
             vigilarSalon();
         }
@@ -274,7 +286,11 @@ public class Centralita {
         if (opcion.equals("s")) {
             this.dormitorio.getLuces().setEstado(false);//Apagamos las luces al salir
             this.dormitorio.getCamara().setEstado(false);
-            Vista.menu();
+           Comando aux = CONSULTAR_HORA;
+            while (aux != APAGAR_SISTEMA) {
+                aux = Vista.menu();
+                ejecutarOrden(aux);
+            }
         } else if (opcion.equalsIgnoreCase("n")) {
             vigilarDormitorio();
         }
@@ -300,19 +316,16 @@ public class Centralita {
                 vigilarDormitorio();
         }
     }
-    
+
     //Método que muestra el estado general de la casa
     //Para ello hace llamadas a los métodos que muestran el estado individual de las diferentes estancias
-    
-    public void mostrarEstadoGeneral(){
+    public void mostrarEstadoGeneral() {
         System.out.println("");
         System.out.println("----------------ESTADO DE LA CENTRALITA------------------");
         this.dormitorio.mostrarEstado();
         this.garaje.mostrarEstado();
-        this.salon.mostrarEstado(); 
+        this.salon.mostrarEstado();
     }
- 
-    
 
     //Método que recibe y ejecuta las ordenes que selecciona el usuario en el menú
     //Este método recibe un comando y en base a este hace llamadas a los diferentes métodos que realizan la acción que se ajusta al comando.
@@ -337,6 +350,7 @@ public class Centralita {
                 break;
             case CERRAR_PUERTA_GARAJE:
                 this.garaje.cerrarPuertaGaraje();
+                break;
 
             case CIERRAR_PERSIANA_SALON:
                 this.salon.getPersiana().subirPersiana();
@@ -373,7 +387,7 @@ public class Centralita {
                 break;
 
             case MOSTAR_ESTADO_GENERAL:
-               mostrarEstadoGeneral();
+                mostrarEstadoGeneral();
                 break;
 
             case ENCENDER_LUCES:
@@ -383,9 +397,14 @@ public class Centralita {
             case APAGAR_LUCES:
                 apagarLuces();
                 break;
+            case ACTIVAR_CAMARAS:
+                vigilancia();
+                break;
 
         }
 
     }
+
+  
 
 }
