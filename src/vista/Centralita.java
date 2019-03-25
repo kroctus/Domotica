@@ -101,7 +101,7 @@ public class Centralita {
         System.out.println("¿De qué estancia quiere encender las luces?");
         System.out.println("1-Dormitorio");
         System.out.println("2-Salon");
-        System.out.println("3-Garaje");
+      
 
         int opcion = 4;
         Scanner teclado = new Scanner(System.in);
@@ -115,9 +115,7 @@ public class Centralita {
             case 2:
                 this.salon.getLuces().encenderLuces();
                 break;
-            case 3:
-                this.garaje.getLuces().encenderLuces();
-                break;
+          
             default:
                 throw new AssertionError();
         }
