@@ -128,7 +128,6 @@ public class Centralita {
     public void apagadoGeneralCentralita() {
 
         this.dormitorio.getLuces().apagadoGeneral();
-        this.garaje.getLuces().apagadoGeneral();;
         this.salon.getLuces().apagadoGeneral();
 
     }
