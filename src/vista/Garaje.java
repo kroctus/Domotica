@@ -52,6 +52,7 @@ public class Garaje extends Estancias {
                 cerrarPuertaGaraje();
             } else {
                 this.puertaAutomatica.setEstado(true);
+                System.out.println("La puerta del garaje ahora esta abierta");
             }
 
         }
@@ -63,6 +64,7 @@ public class Garaje extends Estancias {
         String opcion = "";
         if (!this.puertaAutomatica.isEstado() == false) {
             this.puertaAutomatica.setEstado(false);
+            System.out.println("La puerta del garaje ahora esta cerrada");
         } else {
             System.out.println("La puerta ya esta cerrada, ¿desea abrirla?:  s/n");
             opcion = teclado.nextLine();
