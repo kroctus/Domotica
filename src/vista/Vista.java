@@ -66,25 +66,25 @@ public class Vista {
         System.out.println("------------Menú----------------------");
         System.out.println("¿Qué quieres hacer? :D  : ");
         System.out.println("");
-        System.out.println("0 -Apagar Sistema");
-        System.out.println("1-Consultar hora Actual");
-        System.out.println("2-modificar hora centralita");
-        System.out.println("3-subir la puerta del garaje");
-        System.out.println("4-Cierra puertas garaje");
-        System.out.println("5-abre la persianas del dormitorio");
-        System.out.println("6-cierra las persinas del dormitorio");
-        System.out.println("7-abre la persianas del salón");
-        System.out.println("8-cierra las persinas del salón");
-        System.out.println("9-Activar la vigilancia");
-        System.out.println("9-Revisa la camara del dormitorio");
+        System.out.println("0 -Apagar Sistema");//
+        System.out.println("1-Consultar hora Actual");//
+        System.out.println("2-modificar hora centralita");//
+        System.out.println("3-subir la puerta del garaje");//
+        System.out.println("4-Cierra puertas garaje");//
+        System.out.println("5-abre la persianas del dormitorio");//
+        System.out.println("6-cierra las persinas del dormitorio");//
+        System.out.println("7-abre la persianas del salón");//
+        System.out.println("8-cierra las persinas del salón");//
+        System.out.println("9-revisar camara del dormitorio");
         System.out.println("10-Revisa la camara del salon");
-        System.out.println("11-Muestra el estado total del salon");
-        System.out.println("12-Muestra el estado total del garaje");
-        System.out.println("13-Muestra el estado total del dormitorio");
-        System.out.println("14-Muestra el estado total de la vivienda");
-        System.out.println("15-Enciender las luces");
-        System.out.println("16-Apagar las luces");
-        System.out.println("17-Activar camaras");
+        System.out.println("11-mostrar estado salon");
+        System.out.println("12-Muestra el estado garaje");
+        System.out.println("13-Muestra el estado dormitorio");
+        System.out.println("14-Muestra el estado general de la vivienda");
+        System.out.println("15-Enciende las luces");
+        System.out.println("16-Apaga las luces");
+        System.out.println("17-Activar las camaras");
+        
     
 
         numero = teclado.nextInt();
